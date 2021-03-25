@@ -1,6 +1,7 @@
 # added by TM
 Scripts/
 pyvenv.cfg
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
