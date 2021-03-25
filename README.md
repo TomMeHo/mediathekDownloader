@@ -77,3 +77,24 @@ bin/python3 cleanup-generic.py /volume1/video/Kinder/Löwenzahn "https://mediath
 #/usr/syno/bin/synoindex -R /volume1/video/Kinder/MausSpezial/ &
 ```
 
+## Installation
+
+### Command line
+
+Prerequisites:
+* Make sure the Python 3.8 package is installed.
+
+Steps:
+  1. Access your NAS via SSH.
+  1. Choose a folder, e.g. home (```cd ~```), and create a virtual environment. Activate it.
+  ```bash
+      python3 -m venv mediathekDL
+      cd mediathekDL
+      source scripts/activate
+  ```
+  3. Install pip.
+  3. Install the mediathekdownloader: 
+  ```bash
+      pip --install mediathekdownloader
+  ```
+  3. Test your installation: ```python3 
