@@ -41,6 +41,8 @@ class VsMetaInfoGenerator(vsmetaInfo.VsMetaInfo):
         self.episodeLocked = False
         self.tvshowLocked = False
 
+        self.identifyingTerm = '%s - %s -s%se%s' % (self.showTitle, self.episodeTitle, self.season, self.episode)
+
     def isUsable(self) ->bool:
         if (len(self.episodeTitle) > 0 or len(self.showTitle) > 0 or len(self.showTitle2) > 0) and len(self.download_url) > 0: 
             return True

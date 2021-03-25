@@ -154,7 +154,7 @@ def fileIsInHistory(outPath : str, fileName : str) -> bool:
 		historyFile = '%s/downloaded.txt' % outPath
 		with open( historyFile, 'rt') as history:
 			for line in history:
-				if line == fileName: 
+				if line.rstrip() == fileName: 
 					isInHistory = True
 					debug('File already in download history.')
 					break
@@ -162,6 +162,23 @@ def fileIsInHistory(outPath : str, fileName : str) -> bool:
 		pass
 	return isInHistory
 
+localQueue = []
+
+def isFileInLocalQueue(term : str) -> bool:
+
+	global localQueue
+	isQueued = False
+
+	for queuedItem in localQueue:
+		if term == queuedItem:
+			isQueued = True
+			debug('File already considered for queue.')
+			break
+
+	if isQueued == False:
+		localQueue.append(term)
+
+	return isQueued
 
 def retrieveFeed(feedUrl:str, outputPath:str, printFeedItems:bool=False)->[]:
 
@@ -182,10 +199,11 @@ def retrieveFeed(feedUrl:str, outputPath:str, printFeedItems:bool=False)->[]:
 
 			skip = skipDedicatedEpisodeVariants(vsInfo.episodeTitle)
 			existsAlready = determineFileAlreadyExists(downloadQueueItem.fullFilePath())
-			isInHistory = fileIsInHistory(downloadQueueItem.path, downloadQueueItem.fileName)
+			isInHistory = ( fileIsInHistory(downloadQueueItem.path, downloadQueueItem.fileName) ) or ( fileIsInHistory(downloadQueueItem.path, vsInfo.identifyingTerm ) ) 
 			isInPast = True if (vsInfo.episodeReleaseDate < datetime.now().date()) else False
+			isAlreadyQueued = isFileInLocalQueue( vsInfo.identifyingTerm )
 			
-			if skip == False and existsAlready == False and isInHistory == False and isInPast == True:
+			if skip == False and existsAlready == False and isInHistory == False and isInPast == True and isAlreadyQueued == False:
 				downloadQueueItems.append(downloadQueueItem)
 				if printFeedItems: printFeedItem(entry)
 			else:
@@ -218,6 +236,7 @@ def downloadFeedItem(dlQuItem:DownloadQueueItem, barIndicator:bool=True) -> bool
 
 	information('File downloaded: %s' % (dlQuItem.vsInfo.episodeTitle))
 	notedownDownload(dlQuItem.path, dlQuItem.fileName)
+	notedownDownload(dlQuItem.path, dlQuItem.vsInfo.identifyingTerm)
 	success = True
 
 	return success

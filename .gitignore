@@ -2,6 +2,7 @@
 Scripts/
 pyvenv.cfg
 .vscode/
+test_dl/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

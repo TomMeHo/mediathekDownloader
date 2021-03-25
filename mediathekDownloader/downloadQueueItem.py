@@ -1,8 +1,6 @@
 import os
 from .vsMetaInfoGenerator import VsMetaInfoGenerator
 
-# TODO Filename Param ausbauen
-
 class DownloadQueueItem():
     def __init__(self, vsInfo: VsMetaInfoGenerator, path: str):
 

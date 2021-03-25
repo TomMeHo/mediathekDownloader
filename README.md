@@ -65,16 +65,14 @@ Options:
 #!/bin/sh
 #encoding: utf8 
 
-#go to the work directory
+#Go to the directory of the venv - where this script should be located
 cd /volumeX/[path]
 
 #Download using the venv
-bin/python3 cleanup-generic.py /volume1/video/Kinder/Löwenzahn "https://mediathekviewweb.de/feed?query=%23L%C3%B6wenzahn%20%20%3E20"
+bin/python3 -m mediathekDownloader -S -m 20 -v  -s '!ARD #Maus >10 <40' /volume1/video/Maus
 
-#Index neu aufbauen
-/usr/syno/bin/synoindex -R /volume1/video/Kinder/Löwenzahn &
-#/usr/syno/bin/synoindex -R /volume1/video/Kinder/Maus &
-#/usr/syno/bin/synoindex -R /volume1/video/Kinder/MausSpezial/ &
+#Rebuild video station's index
+/usr/syno/bin/synoindex -R /volume1/video/Maus &
 ```
 
 ## Installation
