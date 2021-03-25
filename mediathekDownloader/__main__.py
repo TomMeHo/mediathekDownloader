@@ -9,8 +9,9 @@ import multiprocessing as mp
 
 from datetime import datetime
 from vsmetaEncoder import VsMetaInfo, VsMetaMovieEncoder, VsMetaSeriesEncoder, VsMetaBase
-from vsMetaInfoGenerator import VsMetaInfoGenerator
-from downloadQueueItem import DownloadQueueItem
+#from vsMetaInfoGenerator import VsMetaInfoGenerator
+#from downloadQueueItem import DownloadQueueItem
+from mediathekDownloader import DownloadQueueItem, VsMetaInfoGenerator
 from urllib import parse
 
 from cli_logger import MessageClass, log, information, set_minimum_severity_level, error, debug, warning, returnCode, printProgressBar

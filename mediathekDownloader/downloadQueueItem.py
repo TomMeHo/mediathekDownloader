@@ -1,5 +1,5 @@
 import os
-from vsMetaInfoGenerator import VsMetaInfoGenerator
+from .vsMetaInfoGenerator import VsMetaInfoGenerator
 
 # TODO Filename Param ausbauen
 

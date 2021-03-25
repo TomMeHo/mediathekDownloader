@@ -14,7 +14,7 @@
 ### Command line
 
 ```sh
-$:>python -m mediathekDwnld -h
+$:>python -m mediathekDownloader -h
 Usage: mediathekDwnld.py [OPTIONS] PATH
 
   The app allows to retrieve videos from German, Austrian and Suisse TV
