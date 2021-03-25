@@ -1,0 +1,2 @@
+home / Artefakte entfernen nach Abschluss!
+Ausschließen, Folgen mehrfach zu laden, d.h. downloads.txt um Titel/Episode ergänzen, gleichzeitig im Feed bewirken, dass es keine Duplikate gibt. Idee: virtuelle Sperrliste auf Basis der zu downloadenden Items realisieren.
