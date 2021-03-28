@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(name='mediathekDownloader',
-      version='0.9.0',
+      version='0.9.5',
       description=' Downloads series and movies from German public media libraries (Öffentlich-Rechtliche Sender) to your Synology NAS, for use with Synology Video Station.',
       long_description=long_description,
       long_description_content_type="text/markdown",
