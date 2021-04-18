@@ -202,7 +202,7 @@ def retrieveFeed(feedUrl:str, outputPath:str, printFeedItems:bool=False)->[]:
 			skip = skipDedicatedEpisodeVariants(vsInfo.episodeTitle)
 			existsAlready = determineFileAlreadyExists(downloadQueueItem.fullFilePath())
 			isInHistory = ( fileIsInHistory(downloadQueueItem.path, downloadQueueItem.fileName) ) or ( fileIsInHistory(downloadQueueItem.path, vsInfo.identifyingTerm ) ) 
-			isInPast = True if (vsInfo.episodeReleaseDate < datetime.now().date()) else False
+			isInPast = True if (vsInfo.episodeReleaseDate <= datetime.now().date()) else False
 
 			if skip == False and existsAlready == False and isInHistory == False and isInPast == True: 
 				isAlreadyQueued = isFileInLocalQueue( vsInfo.identifyingTerm )
