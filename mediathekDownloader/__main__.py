@@ -129,6 +129,8 @@ def skipDedicatedEpisodeVariants(episodeTitle : str) -> bool:
 	if episodeTitle.find('(mit Untertitel)') != -1: skip = True
 	if episodeTitle.find('(Englisch)') != -1: skip = True
 
+	if skip: debug('Skipped, is  a special version.')
+
 	return skip
 
 def determineFileAlreadyExists(filePath : str) -> bool:
@@ -201,8 +203,10 @@ def retrieveFeed(feedUrl:str, outputPath:str, printFeedItems:bool=False)->[]:
 			existsAlready = determineFileAlreadyExists(downloadQueueItem.fullFilePath())
 			isInHistory = ( fileIsInHistory(downloadQueueItem.path, downloadQueueItem.fileName) ) or ( fileIsInHistory(downloadQueueItem.path, vsInfo.identifyingTerm ) ) 
 			isInPast = True if (vsInfo.episodeReleaseDate < datetime.now().date()) else False
-			isAlreadyQueued = isFileInLocalQueue( vsInfo.identifyingTerm )
-			
+
+			if skip == False and existsAlready == False and isInHistory == False and isInPast == True: 
+				isAlreadyQueued = isFileInLocalQueue( vsInfo.identifyingTerm )
+
 			if skip == False and existsAlready == False and isInHistory == False and isInPast == True and isAlreadyQueued == False:
 				downloadQueueItems.append(downloadQueueItem)
 				if printFeedItems: printFeedItem(entry)
